@@ -15,7 +15,7 @@ const fetchKeys = (pathToCsv, callback) => {
       if (firstLineIndex !== -1) {
         header = firstChunk.substring(0, firstLineIndex)
         const delimeter = CSV.detect(header)
-        keys = [...new Set(header.split(`${delimeter}`))]
+        keys = header.split(`${delimeter}`)
         readStream.destroy()
         isFirstChunk = false
         callback(keys, delimeter)
@@ -61,7 +61,7 @@ async function csvToJson(pathToCsv) {
         unProcessedData = chunkString.slice(startIndex)
     });
 
-    readStream.on('end', ()=>{
+    readStream.on('end', ()=> {
       let dataToStore = JSON.stringify(jsonObjectArray, null, 2)
       writeStream.write(dataToStore)
       console.log("Successfully converted csv file to json file!")
