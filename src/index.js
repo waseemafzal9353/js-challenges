@@ -67,4 +67,29 @@ const grid = [
   ['0', '0', '0', '1', '1'],
 ]
 
-console.log(numberOfIslands(grid))
+// console.log(numberOfIslands(grid))
+
+// leetcode check pair of parenthises
+function validatingParenthises(string) {
+  let stack = []
+  let parens = '() {} []'
+  let i = 0
+  const onlyParens = string.split('').filter((char) => '(){}[]'.includes(char))
+
+  while (i < onlyParens.length) {
+    stack.push(onlyParens[i])
+    i++
+    let opened = stack[stack.length - 2]
+    let closed = stack[stack.length - 1]
+    let potParen = opened + closed
+    if (parens.includes(potParen)) {
+      stack.pop()
+      stack.pop()
+    }
+  }
+  return stack.length === 0
+}
+
+const strings = ')({[oioioioi]oioi}))'
+const goodOrBad = validatingParenthises(strings)
+
