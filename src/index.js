@@ -74,7 +74,8 @@ function validatingParenthises(string) {
   let stack = []
   let parens = '() {} []'
   let i = 0
-  const onlyParens = string.split('').filter((char) => '(){}[]'.includes(char))
+  const onlyParens = string.split('')
+  .filter((char) => '(){}[]'.includes(char))
 
   while (i < onlyParens.length) {
     stack.push(onlyParens[i])
@@ -91,5 +92,6 @@ function validatingParenthises(string) {
 }
 
 const strings = ')({[oioioioi]oioi}))'
-const goodOrBad = validatingParenthises(strings)
+const goodOrBad = 
+validatingParenthises(strings)
 
